@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Book Bean -->
+    <bean id="book" class="org.example.beans.Book">
+        <constructor-arg value="${book.name}" />
+        <constructor-arg value="${book.author}" />
+    </bean>
+
+    <!-- BookShelf Bean -->
+    <bean id="bookShelf" class="org.example.beans.BookShelf">
+        <property name="book" ref="book" />
+    </bean>
+
+    <!-- Library Bean -->
+    <bean id="library" class="org.example.beans.Library">
+        <constructor-arg ref="bookShelf" />
+    </bean>
+
+    <!-- Properties -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:library.properties" />
+    </bean>
+</beans>
