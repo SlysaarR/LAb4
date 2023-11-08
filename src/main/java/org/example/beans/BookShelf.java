@@ -1,11 +1,12 @@
 package org.example.beans;
 
-public class BookShelf {
-    private Book book;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 
-    public void setBook(Book book) {
-        this.book = book;
-    }
+@Component
+public class BookShelf {
+    @Autowired
+    private Book book;
 
     // getters, toString
 }

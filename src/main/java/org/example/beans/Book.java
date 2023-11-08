@@ -1,12 +1,17 @@
 package org.example.beans;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+@Component
 public class Book {
+    @Value("${book.name}")
     private String name;
+
+    @Value("${book.author}")
     private String author;
 
-    public Book(String name, String author) {
-        this.name = name;
-        this.author = author;
+    public Book() {
     }
 
     // getters, setters, toString
