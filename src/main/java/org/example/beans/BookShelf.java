@@ -8,5 +8,9 @@ public class BookShelf {
     @Autowired
     private Book book;
 
+    public void useLibraryMethod() {
+        book.someLibraryMethod();
+    }
+
     // getters, toString
 }

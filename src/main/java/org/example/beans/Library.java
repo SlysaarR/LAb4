@@ -12,5 +12,9 @@ public class Library {
         this.bookShelf = bookShelf;
     }
 
+    public void someLibraryMethod() {
+        // Реалізація вашого методу
+    }
+
     // getters, toString
 }
