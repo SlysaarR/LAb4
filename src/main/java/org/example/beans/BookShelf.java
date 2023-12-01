@@ -1,16 +1,21 @@
 package org.example.beans;
 
-import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.persistence.*;
 
-@Component
+@Entity
 public class BookShelf {
-    @Autowired
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @OneToOne(mappedBy = "bookShelf")
     private Book book;
 
     public void useLibraryMethod() {
-        book.someLibraryMethod();
+        if (book != null) {
+            book.getLibrary().someLibraryMethod();
+        }
     }
 
-    // getters, toString
+    // getters, setters, toString
 }

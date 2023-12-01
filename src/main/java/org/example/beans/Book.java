@@ -1,31 +1,39 @@
 package org.example.beans;
 
-import org.springframework.beans.factory.annotation.Autowired; // Додайте цей імпорт
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import javax.persistence.*;
 
-@Component
+@Entity
 public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String name;
     private String author;
+
+    @ManyToOne
+    @JoinColumn(name = "library_id")
+    private Library library;
 
     // Порожній конструктор для Spring
     public Book() {
     }
 
     // Конструктор, який приймає параметри для ініціалізації полів
-    @Autowired
-    public Book(@Value("${book.name}") String name, @Value("${book.author}") String author) {
+    public Book(String name, String author) {
         this.name = name;
         this.author = author;
     }
 
-    public void someLibraryMethod() {
-        // Реалізація вашого методу
-        System.out.println("Executing someLibraryMethod");
+    // getters, setters, toString
+
+    public Long getId() {
+        return id;
     }
 
-    // getters, setters, toString
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -43,10 +51,19 @@ public class Book {
         this.author = author;
     }
 
+    public Library getLibrary() {
+        return library;
+    }
+
+    public void setLibrary(Library library) {
+        this.library = library;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", author='" + author + '\'' +
                 '}';
     }
